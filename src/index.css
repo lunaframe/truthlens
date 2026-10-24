@@ -1,0 +1,438 @@
+/* ==========================================================================
+   TruthLens Editorial Design System
+   Investigative Newsroom / Forensic Editorial Desk Aesthetic
+   ========================================================================== */
+
+:root {
+  /* Editorial Palette: Warm Paper & Carbon Ink */
+  --paper-base: #F4F1EA;
+  --paper-card: #FAF8F5;
+  --paper-muted: #EBE7DD;
+  --paper-darker: #E2DDD1;
+  --paper-border: #DCD7CC;
+  --paper-border-strong: #B8B0A2;
+  
+  /* Ink Shades */
+  --ink-primary: #16140F;
+  --ink-secondary: #48433A;
+  --ink-tertiary: #787267;
+  --ink-muted: #9E988D;
+  --ink-faint: #CDC7BB;
+
+  /* Editorial Accents */
+  --accent-red: #E4572E;
+  --accent-red-hover: #C9421A;
+  --accent-red-bg: rgba(228, 87, 46, 0.12);
+  --accent-red-border: rgba(228, 87, 46, 0.35);
+
+  --highlighter-yellow: #F5D90A;
+  --highlighter-bg: rgba(245, 217, 10, 0.45);
+  --highlighter-border: rgba(217, 180, 0, 0.5);
+
+  --ink-verified: #1F6B42;
+  --ink-verified-bg: rgba(31, 107, 66, 0.1);
+  --ink-verified-border: rgba(31, 107, 66, 0.3);
+
+  --ink-uncertain: #B87314;
+  --ink-uncertain-bg: rgba(184, 115, 20, 0.1);
+  --ink-uncertain-border: rgba(184, 115, 20, 0.3);
+
+  /* Typography Scale */
+  --font-serif: 'Newsreader', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-heading: 'Newsreader', 'Fraunces', Georgia, serif;
+  --font-body: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Precision Radii (strictly flat or 2-4px) */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-full: 9999px;
+
+  /* Shadows - Natural Paper Stacking, Zero Glow */
+  --shadow-subtle: 0 1px 3px rgba(22, 20, 15, 0.05);
+  --shadow-card: 0 2px 8px rgba(22, 20, 15, 0.06), 0 1px 2px rgba(22, 20, 15, 0.04);
+  --shadow-modal: 0 16px 40px -8px rgba(22, 20, 15, 0.18), 0 0 0 1px var(--paper-border-strong);
+  
+  /* Hairline Rules */
+  --rule-hairline: 1px solid var(--paper-border);
+  --rule-strong: 1px solid var(--ink-primary);
+  --rule-double: 3px double var(--ink-primary);
+
+  /* Transitions */
+  --ease-editorial: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--paper-base);
+}
+
+body.editorial-paper {
+  background-color: var(--paper-base);
+  color: var(--ink-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Subtle 2-3% Newspaper Grain Texture */
+body.editorial-paper::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar - Minimal Ink Track */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--paper-border-strong);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-tertiary);
+}
+
+/* Container & Grid Standards */
+.editorial-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .editorial-container {
+    padding: 0 18px;
+  }
+}
+
+/* Visible 12-Column Grid Rhythm */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+/* Editorial Typography Helpers */
+.font-serif {
+  font-family: var(--font-serif);
+}
+.font-grotesk {
+  font-family: var(--font-body);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.small-caps {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-tertiary);
+  font-weight: 500;
+}
+
+/* Hairline Section Divider */
+.hairline-divider {
+  border: none;
+  border-top: var(--rule-hairline);
+  margin: 0;
+  width: 100%;
+}
+
+.hairline-divider-strong {
+  border: none;
+  border-top: var(--rule-strong);
+  margin: 0;
+  width: 100%;
+}
+
+.hairline-divider-double {
+  border: none;
+  border-top: var(--rule-double);
+  margin: 0;
+  width: 100%;
+}
+
+/* Buttons: Flat, Rectangular, Solid Ink or Underlined Link */
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--ink-primary);
+  color: var(--paper-card);
+  padding: 10px 18px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--ink-primary);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 140ms var(--ease-editorial), color 140ms var(--ease-editorial);
+}
+
+.btn-ink:hover {
+  background-color: var(--accent-red);
+  border-color: var(--accent-red);
+  color: #ffffff;
+}
+
+.btn-ink:disabled {
+  background-color: var(--paper-border-strong);
+  border-color: var(--paper-border-strong);
+  cursor: not-allowed;
+  color: var(--paper-muted);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--ink-primary);
+  padding: 9px 16px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--paper-border-strong);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 140ms var(--ease-editorial);
+}
+
+.btn-outline:hover {
+  border-color: var(--ink-primary);
+  background-color: var(--paper-muted);
+}
+
+.link-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 120ms var(--ease-editorial), text-decoration-color 120ms var(--ease-editorial);
+}
+
+.link-editorial:hover {
+  color: var(--accent-red);
+  text-decoration-color: var(--accent-red);
+}
+
+/* Rubber Stamp Styling */
+.rubber-stamp {
+  display: inline-block;
+  padding: 6px 14px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+  transform: rotate(-2deg);
+  line-height: 1.1;
+  mask-image: linear-gradient(135deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.85) 100%);
+  user-select: none;
+}
+
+.rubber-stamp.stamp-fake {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+  background-color: rgba(228, 87, 46, 0.04);
+}
+
+.rubber-stamp.stamp-real {
+  color: var(--ink-verified);
+  border-color: var(--ink-verified);
+  background-color: rgba(31, 107, 66, 0.04);
+}
+
+.rubber-stamp.stamp-uncertain {
+  color: var(--ink-uncertain);
+  border-color: var(--ink-uncertain);
+  background-color: rgba(184, 115, 20, 0.04);
+}
+
+/* Proofreader Highlighter Marks */
+.proof-highlight-yellow {
+  background-color: var(--highlighter-bg);
+  box-shadow: 0 0 0 2px var(--highlighter-bg);
+  padding: 1px 2px;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: background-color 100ms;
+}
+.proof-highlight-yellow:hover {
+  background-color: #fbe025;
+}
+
+.proof-underline-red {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--accent-red);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  cursor: pointer;
+}
+
+.proof-anchor-green {
+  background-color: var(--ink-verified-bg);
+  border-bottom: 2px solid var(--ink-verified);
+  padding: 1px 2px;
+  cursor: pointer;
+}
+
+/* Margin Annotation Tag [1], [2] */
+.margin-note-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--accent-red);
+  vertical-align: super;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+/* Paper Card Box */
+.paper-card {
+  background-color: var(--paper-card);
+  border: var(--rule-hairline);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-card);
+}
+
+/* Editorial Modal Overlay */
+.editorial-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(22, 20, 15, 0.65);
+  backdrop-filter: blur(1px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.editorial-modal-box {
+  background-color: var(--paper-card);
+  border: 1px solid var(--paper-border-strong);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-modal);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Top Nav Masthead */
+.masthead-nav {
+  border-bottom: var(--rule-hairline);
+  background-color: var(--paper-base);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.masthead-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.wordmark {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.wordmark-period {
+  color: var(--accent-red);
+}
+
+.nav-links-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-text-link {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 100ms var(--ease-editorial);
+}
+
+.nav-text-link:hover {
+  color: var(--ink-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Footer Masthead */
+.editorial-footer {
+  border-top: var(--rule-double);
+  background-color: var(--paper-muted);
+  padding: 48px 0 64px 0;
+  margin-top: 80px;
+}
